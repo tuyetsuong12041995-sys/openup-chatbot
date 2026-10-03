@@ -41,12 +41,12 @@ if prompt:
     Người dùng vừa nói: {prompt}
     """
 
-# 1. Bật tính năng stream=True để AI trả về từng cụm từ
-response = model.generate_content(full_prompt, stream=True)
-
-# 2. Yêu cầu giao diện gõ từng chữ ra màn hình
-with st.chat_message("assistant"):
-    bot_reply = st.write_stream(chunk.text for chunk in response)
+    # 1. Bật tính năng stream=True để AI trả về từng cụm từ
+    response = model.generate_content(full_prompt, stream=True)
     
-# 3. Lưu lại toàn bộ câu trả lời vào lịch sử
-st.session_state.messages.append({"role": "assistant", "content": bot_reply})
+    # 2. Yêu cầu giao diện gõ từng chữ ra màn hình
+    with st.chat_message("assistant"):
+        bot_reply = st.write_stream(chunk.text for chunk in response)
+        
+    # 3. Lưu lại toàn bộ câu trả lời vào lịch sử
+    st.session_state.messages.append({"role": "assistant", "content": bot_reply})
