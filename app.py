@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 # 1. CẤU HÌNH API
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-model = genai.GenerativeModel("models/gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-3.5-flash")
 
 # 2. GIAO DIỆN TRANG WEB
 st.set_page_config(page_title="OpenUp", page_icon="💙")
