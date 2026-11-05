@@ -12,7 +12,7 @@ TEN_MO_HINH = "gemini-3.5-flash"
 model = genai.GenerativeModel(
     TEN_MO_HINH,
     system_instruction=xay_dung_chi_dan(),
-    generation_config={"temperature": 0.6, "max_output_tokens": 600},
+      generation_config={"temperature": 0.6},
 )
 
 st.set_page_config(page_title="OpenUp", page_icon="💙")
