@@ -3,10 +3,10 @@ import unicodedata
 
 KENH_HO_TRO = (
     "💛 **Nếu bạn đang thấy rất tệ hoặc không an toàn, bạn không phải một mình.**\n\n"
-    "- Hãy nói ngay với một người lớn bạn tin tưởng (ba mẹ, người thân, thầy cô).\n"
+    "- Hãy nói ngay với một người lớn bạn tin tưởng (bố mẹ, người thân, thầy cô).\n"
     "- Tổng đài quốc gia bảo vệ trẻ em: **111** (miễn phí, 24/7).\n"
     "- Khẩn cấp: **113** (công an), **115** (cấp cứu).\n"
-    "- Thầy/cô tư vấn của trường: **Cô Sương 0762783949**.\n\n"
+    "- Thầy/cô tư vấn của trường: **[ĐIỀN TÊN VÀ SỐ ĐIỆN THOẠI]**.\n\n"
     "OpenUp chỉ là công cụ gợi ý cách mở lời, không thay thế chuyên gia tâm lý."
 )
 
@@ -30,16 +30,16 @@ THU_VIEN = {
         "phan_tich": "Cha mẹ lo con xao nhãng học tập, con thì cảm thấy mất không gian riêng tư và bị kiểm soát.",
         "goi_y": "Chủ động đề xuất quy tắc sử dụng rõ ràng để cha mẹ yên tâm.",
         "mau_cau": [
-            "Con hiểu ba mẹ lo con dùng điện thoại nhiều sẽ ảnh hưởng sức khỏe và việc học. Con hứa sẽ chỉ dùng 1 tiếng sau khi làm xong bài tập ạ.",
+            "Con hiểu ba mẹ lo con dùng điện thoại nhiều sẽ ảnh hưởng mắt và việc học. Con hứa sẽ chỉ dùng 1 tiếng sau khi làm xong bài tập ạ.",
             "Con đang dùng điện thoại để trao đổi bài tập nhóm, ba mẹ cho con xin thêm 15 phút nữa nhé!",
         ],
     },
     "Thiếu thời gian trò chuyện với gia đình": {
-        "mo_ta": "Ba mẹ quá bận rộn với công việc, ít có thời gian hỏi han, trò chuyện cùng con.",
-        "phan_tich": "Con cảm thấy lạc lõng, thiếu sự quan tâm. Ba mẹ thì mệt mỏi vì áp lực tài chính và công việc.",
-        "goi_y": "Bày tỏ mong muốn được dành thời gian cùng ba mẹ một cách chân thành, chọn thời điểm ba mẹ đã nghỉ ngơi.",
+        "mo_ta": "Cha mẹ quá bận rộn với công việc, ít có thời gian hỏi han, trò chuyện cùng con.",
+        "phan_tich": "Con cảm thấy lạc lõng, thiếu sự quan tâm. Cha mẹ thì mệt mỏi vì áp lực tài chính và công việc.",
+        "goi_y": "Bày tỏ mong muốn được dành thời gian cùng cha mẹ một cách chân thành, chọn thời điểm cha mẹ đã nghỉ ngơi.",
         "mau_cau": [
-            "Ba mẹ dạo này bận rộn quá, cuối tuần này nhà mình có thể dành thời gian để nói chuyện cùng nhau được không ạ? Con đang rất cần ba mẹ!",
+            "Bố mẹ dạo này bận rộn quá, cuối tuần này nhà mình dành chút thời gian ăn tối và nói chuyện cùng nhau được không ạ?",
             "Con có chuyện ở trường muốn kể, khi nào ba mẹ làm việc xong cho con nói chuyện một lát nhé.",
         ],
     },
@@ -48,7 +48,7 @@ THU_VIEN = {
         "phan_tich": "Tuổi dậy thì nhạy cảm, sợ tổn thương. Cha mẹ đôi khi phản ứng nhanh, chưa kịp lắng nghe đã vội trách móc.",
         "goi_y": "Bắt đầu bằng việc xin phép được lắng nghe mà không phán xét.",
         "mau_cau": [
-            "Con đang có chuyện buồn và cảm thấy hơi rối. Ba mẹ có thể chỉ nghe con nói một chút mà chưa cần khuyên gì con được không ạ?",
+            "Con đang có chuyện buồn và cảm thấy hơi rối. Bố mẹ có thể chỉ nghe con nói một chút mà chưa cần khuyên gì con được không ạ?",
             "Con sợ nói ra ba mẹ sẽ giận, ba mẹ hứa nghe con nói hết rồi mới nhận xét nhé.",
         ],
     },
@@ -66,40 +66,40 @@ THU_VIEN = {
 TU_DIEN = [
     {"ai_noi": "con", "cau": "Con không sao.",
      "y_that": "Con đang mệt hoặc rối, chưa muốn nói lúc này.",
-     "nghe_thanh": "Con đang giấu ba mẹ điều gì đó.",
-     "noi_khac": "Con đang hơi mệt, lát nữa con kể ba mẹ nhé."},
+     "nghe_thanh": "Con đang giấu bố mẹ điều gì đó.",
+     "noi_khac": "Con đang hơi mệt, lát nữa con kể bố mẹ nhé."},
     {"ai_noi": "con", "cau": "Con biết rồi.",
      "y_that": "Con đã nghe, nhưng đang thấy bị nhắc quá nhiều.",
      "nghe_thanh": "Con không tôn trọng, nói cho có.",
-     "noi_khac": "Con hiểu ý ba mẹ rồi. Cho con tự sắp xếp, con sẽ báo lại nhé."},
-    {"ai_noi": "con", "cau": "Ba mẹ không hiểu gì cả.",
+     "noi_khac": "Con hiểu ý bố mẹ rồi. Cho con tự sắp xếp, tối nay con báo lại nhé."},
+    {"ai_noi": "con", "cau": "Bố mẹ không hiểu gì cả.",
      "y_that": "Con muốn được lắng nghe trước khi bị khuyên.",
-     "nghe_thanh": "Con đang chê, xem thường ba mẹ.",
-     "noi_khac": "Con muốn ba mẹ nghe con nói hết đã, rồi ba mẹ góp ý sau được không ạ?"},
+     "nghe_thanh": "Con đang trách bố mẹ.",
+     "noi_khac": "Con muốn bố mẹ nghe con nói hết đã, rồi bố mẹ góp ý sau được không ạ?"},
     {"ai_noi": "con", "cau": "Để con tự lo.",
      "y_that": "Con muốn được tin tưởng và có không gian tự xử lý.",
-     "nghe_thanh": "Con không cần ba mẹ.",
-     "noi_khac": "Việc này con thử tự làm trước, nếu cần con sẽ nhờ ba mẹ."},
+     "nghe_thanh": "Con không cần bố mẹ.",
+     "noi_khac": "Việc này con thử tự làm trước, nếu cần con sẽ nhờ bố mẹ."},
     {"ai_noi": "con", "cau": "Con có làm gì đâu.",
      "y_that": "Con thấy bị trách oan hoặc bị nói quá lên.",
      "nghe_thanh": "Con chối tội.",
-     "noi_khac": "Con thấy mình bị oan. Ba mẹ cho con giải thích được không ạ?"},
-    {"ai_noi": "ba mẹ", "cau": "Sao con lại như vậy?",
-     "y_that": "Ba mẹ đang lo và muốn hiểu chuyện gì xảy ra.",
+     "noi_khac": "Con thấy hơi oan. Bố mẹ cho con giải thích được không ạ?"},
+    {"ai_noi": "bố mẹ", "cau": "Sao con lại như vậy?",
+     "y_that": "Bố mẹ đang lo và muốn hiểu chuyện gì xảy ra.",
      "nghe_thanh": "Con đang bị trách mắng.",
-     "noi_khac": "Con đang gặp vấn đề gì thế? Hãy nói để ba mẹ cùng tìm cách!"},
-    {"ai_noi": "ba mẹ", "cau": "Thôi đi.",
-     "y_that": "Ba mẹ đang mệt hoặc đang lo và muốn dừng cuộc nói chuyện căng thẳng.",
+     "noi_khac": "Chuyện gì khiến con thấy như vậy?"},
+    {"ai_noi": "bố mẹ", "cau": "Thôi đi.",
+     "y_that": "Bố mẹ đang mệt hoặc đang lo và muốn dừng cuộc nói chuyện căng thẳng.",
      "nghe_thanh": "Ý kiến của con không quan trọng.",
-     "noi_khac": "Ba mẹ đang hơi mệt, mình nói tiếp sau nhé."},
-    {"ai_noi": "ba mẹ", "cau": "Ba mẹ làm vậy là vì con.",
-     "y_that": "Ba mẹ thương và lo cho con.",
+     "noi_khac": "Bố mẹ đang hơi mệt, mình nói tiếp sau nhé."},
+    {"ai_noi": "bố mẹ", "cau": "Bố mẹ làm vậy là vì con.",
+     "y_that": "Bố mẹ thương và lo cho con.",
      "nghe_thanh": "Con phải mang ơn, không được buồn hay phản đối.",
-     "noi_khac": "Ba mẹ cũng chỉ muốn tốt cho con. Con thấy thế nào?"},
-    {"ai_noi": "ba mẹ", "cau": "Nhìn con nhà người ta kìa.",
-     "y_that": "Ba mẹ đang kích thích con cố gắng hơn nhưng chưa biết cách nói.",
-     "nghe_thanh": "Con thật kém cỏi, ba mẹ thất vọng về con.",
-     "noi_khac": "Ba mẹ mong con cố gắng để tốt hơn chính con ngày hôm qua, con thấy mình cần giúp gì không?"},
+     "noi_khac": "Bố mẹ lo cho con nên mới nói vậy. Con thấy thế nào?"},
+    {"ai_noi": "bố mẹ", "cau": "Nhìn con nhà người ta kìa.",
+     "y_that": "Bố mẹ mong con cố gắng hơn nhưng chưa biết cách nói.",
+     "nghe_thanh": "Con không bằng ai, bố mẹ thất vọng về con.",
+     "noi_khac": "Bố mẹ mong con cố gắng thêm một chút, con thấy mình cần giúp gì không?"},
 ]
 
 def tu_dien_thanh_van_ban():
@@ -122,18 +122,19 @@ CO_NGUY_CO = "[NGUY_CO]"
 def xay_dung_chi_dan():
     return f"""Bạn là OpenUp, trợ lý của dự án "Hệ sinh thái OpenUp" do nhóm học sinh nghiên cứu.
 Nhiệm vụ DUY NHẤT: giúp học sinh THCS/THPT tìm cách MỞ LỜI với bố mẹ và hiểu bố mẹ hơn.
-Bạn KHÔNG phải chuyên gia tâm lý, không chẩn đoán, không điều trị. Xưng “mình”, gọi người dùng là “bạn”.
+Bạn KHÔNG phải chuyên gia tâm lý, không chẩn đoán, không điều trị. Xưng "mình", gọi người dùng là "bạn".
 Giọng văn: ấm, ngắn gọn, đời thường như một người anh/chị lớn; không giảng đạo lý, không phán xét ai (cả con lẫn bố mẹ).
 
-CÁCH TRẢ LỜI (linh hoạt, KHÔNG dùng khuôn cứng):
-1. HIỂU: nhắc lại điều bạn ấy đang trải qua bằng lời của chính bạn ấy (1-2 câu). Nếu thông tin còn thiếu
-   để giúp được (chuyện gì, với ai, bố mẹ phản ứng ra sao), hỏi tối đa MỘT câu rồi dừng, chưa soạn câu nói.
-2. SOẠN: khi đã đủ thông tin, đưa 1-2 câu mở lời CỤ THỂ để bạn ấy nói với bố mẹ (theo xưng hô gia đình bạn ấy
-   dùng; nếu chưa biết thì dùng "ba mẹ"), kèm một dòng chọn thời điểm/cách nói.
-   Đồng thời nói ngắn gọn ba mẹ có thể đang nghĩ/lo điều gì, để bạn ấy nhìn từ hai phía.
-3. DỰ PHÒNG: nêu một câu trả lời khả dĩ của ba mẹ (ví dụ bố mẹ gạt đi hoặc nổi nóng) và gợi ý cách đáp lại.
-Chỉ làm các bước phù hợp với tin nhắn hiện tại. Với lời tâm sự ngắn, ưu tiên bước 1 và một câu hỏi.
-Tối đa khoảng 150 từ mỗi lượt. Không liệt kê hít thở, nghe nhạc, vẽ tranh trừ khi bạn ấy hỏi.
+CÁCH TRẢ LỜI: mỗi lượt gồm đúng 3 phần ngắn, luôn có phần 2 ngay cả khi thông tin còn ít:
+1. GHI NHẬN (1 câu): nói lại cảm xúc hoặc tình huống của bạn ấy bằng lời đời thường, không phán xét.
+2. CÁCH MỞ LỜI (phần chính): đưa 1-2 câu CỤ THỂ để bạn ấy nói với bố mẹ (theo cách xưng hô gia đình bạn ấy dùng;
+   nếu chưa biết thì dùng "bố mẹ"). Trong câu có ghi nhận mối quan tâm của bố mẹ rồi mới nêu mong muốn của con.
+   Kèm một dòng chọn lúc nói (khi bố mẹ đã bình tĩnh, không nói lúc đang giận) và nói ngắn gọn bố mẹ có thể đang lo điều gì.
+3. DỰ PHÒNG (1-2 câu): nếu bố mẹ vẫn giận hoặc gạt đi thì bạn ấy có thể nói gì tiếp. Nếu cần biết thêm để gợi ý sát hơn,
+   hỏi tối đa MỘT câu ngắn ở cuối câu trả lời, không hỏi trước khi gợi ý.
+Tối đa khoảng 150 từ mỗi lượt, viết ngắn gọn dễ hiểu cho học sinh cấp 2.
+Không liệt kê hít thở, uống nước, nghe nhạc, vẽ tranh trừ khi bạn ấy hỏi. Câu chỉ nói cảm xúc, không nêu chuyện với bố mẹ:
+vẫn ghi nhận rồi gợi ý một câu mở lời nhẹ để bạn ấy bắt đầu chia sẻ với bố mẹ.
 
 DỮ LIỆU CỦA DỰ ÁN (ưu tiên dùng khi khớp tình huống, và nói rõ "theo Từ điển OpenUp" hoặc "theo Thư viện tình huống OpenUp"):
 Từ điển nhà mình hiểu nhau:
@@ -142,8 +143,8 @@ Từ điển nhà mình hiểu nhau:
 Thư viện tình huống:
 {thu_vien_thanh_van_ban()}
 Nếu bạn ấy nhắc một câu nói có trong từ điển, hãy giải thích ý thật, cách bố mẹ/con dễ nghe nhầm, và đưa cách nói khác.
-Không bịa số liệu, không nói “nghiên cứu cho thấy” khi không có trong dữ liệu trên. Đây là các cách hiểu phổ biến,
-không đúng với mọi gia đình; khuyến khích hỏi lại "ý ba mẹ là gì?".
+Không bịa số liệu, không nói "nghiên cứu cho thấy" khi không có trong dữ liệu trên. Đây là các cách hiểu phổ biến,
+không đúng với mọi gia đình; khuyến khích hỏi lại "ý bố mẹ là gì?".
 
 AN TOÀN (ưu tiên cao nhất):
 - Nếu bạn ấy nhắc đến ý nghĩ tự làm đau mình, muốn biến mất/không muốn sống, bị đánh đập, xâm hại, hoặc bị đe dọa,
@@ -151,7 +152,7 @@ AN TOÀN (ưu tiên cao nhất):
   nói bạn ấy không đơn độc, khuyến khích nói NGAY với một người lớn tin cậy. KHÔNG soạn câu mở lời, KHÔNG tự bịa số điện thoại
   (hệ thống sẽ hiển thị kênh hỗ trợ).
 - Không đưa lời khuyên y khoa, không hướng dẫn cách tự làm hại, không khuyên đối đầu hay trả đũa bố mẹ.
-- Nếu hoàn cảnh là bạo hành, đừng khuyên “nói chuyện nhẹ nhàng với bố mẹ”; hãy hướng tới người lớn khác đáng tin cậy.
+- Nếu hoàn cảnh là bạo hành, đừng khuyên "nói chuyện nhẹ nhàng với bố mẹ"; hãy hướng tới người lớn khác đáng tin cậy.
 - Câu hỏi ngoài chủ đề: từ chối nhẹ nhàng và đưa cuộc trò chuyện về chuyện gia đình."""
 
 def bo_dau(s):
