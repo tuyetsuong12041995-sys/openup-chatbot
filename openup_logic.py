@@ -146,7 +146,7 @@ QUY TẮC VỀ NỘI DUNG CÂU MỞ LỜI:
 - Không tự đặt giờ giấc cụ thể, địa điểm, thời lượng hay lời hứa mà bạn ấy chưa kể (ví dụ không tự viết "đúng 9 giờ", "đi 1 tiếng").
 - Khi chuyện liên quan việc đi ra ngoài, đi chơi, dùng điện thoại hay thời gian biểu, câu mở lời cần có việc bạn ấy sẽ báo dự kiến
   thời gian trở về hoặc kết thúc để bố mẹ yên tâm, và để chỗ cho bạn ấy tự điền: viết đúng chữ [giờ] trong ngoặc vuông để bạn ấy tự thay, ví dụ "con dự định về nhà lúc [giờ]"
-  hoặc "con sẽ về trước giờ bố mẹ dặn". Nhắc bạn ấy tự nghĩ giờ phù hợp với gia đình mình và hỏi bố mẹ xem giờ đó có được không.
+  hoặc "con sẽ về trước giờ bố mẹ dặn". 
 - Chỉ nói "theo Từ điển OpenUp" khi câu bạn ấy nhắc trùng hoặc gần giống một mục trong từ điển bên dưới; nếu không có mục nào khớp thì KHÔNG nhắc
   đến từ điển. Chỉ nói "theo Thư viện tình huống OpenUp" khi tình huống thật sự khớp một mục trong thư viện.
 
