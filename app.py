@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 from openup_logic import (
     KENH_HO_TRO, LOI_DU_PHONG, THU_VIEN, TU_DIEN,
-    xay_dung_chi_dan, xay_dung_lich_su, phat_hien_nguy_co, LocCo,
+    xay_dung_chi_dan, xay_dung_lich_su, phat_hien_nguy_co, LocCo, cat_den_cau_cuoi,
 )
 
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
@@ -68,39 +68,47 @@ if prompt:
     st.chat_message("user").write(prompt)
 
     nguy_co = phat_hien_nguy_co(prompt)
-    bot_reply = ""
+    lich_su = xay_dung_lich_su(st.session_state.messages)
+
+    def hoi_dap(stream, cho=None):
+        loc = LocCo()
+        van_ban = ""
+        loi = False
+        try:
+            chat = model.start_chat(history=lich_su)
+            if stream:
+                for chunk in chat.send_message(prompt, stream=True):
+                    try:
+                        vb = chunk.text
+                    except ValueError:
+                        vb = ""
+                    out = loc.day(vb)
+                    if out:
+                        van_ban += out
+                        if cho is not None:
+                            cho.write(van_ban + " ▌")
+            else:
+                van_ban += loc.day(chat.send_message(prompt).text)
+            van_ban += loc.ket()
+        except Exception as e:
+            print("OPENUP_LOI:", repr(e))
+            van_ban += loc.ket()
+            loi = True
+        return van_ban, loi, loc.co
 
     with st.chat_message("assistant"):
-        try:
-            chat = model.start_chat(history=xay_dung_lich_su(st.session_state.messages))
-            response = chat.send_message(prompt, stream=True)
-            loc = LocCo()
-
-            def luong():
-                for chunk in response:
-                    try:
-                        van_ban = chunk.text
-                    except ValueError:
-                        van_ban = ""
-                    out = loc.day(van_ban)
-                    if out:
-                        yield out
-                out = loc.ket()
-                if out:
-                    yield out
-
-            bot_reply = st.write_stream(luong())
-            if loc.co:
-                nguy_co = True
-            if not bot_reply.strip():
-                bot_reply = LOI_DU_PHONG
-                st.write(bot_reply)
-                nguy_co = True
-        except Exception as loi:
-            print("OPENUP_LOI:", repr(loi))
-
+        cho = st.empty()
+        bot_reply, loi, co = hoi_dap(True, cho)
+        if loi and len(bot_reply.strip()) < 30:
+            bot_reply, loi, co2 = hoi_dap(False)
+            co = co or co2
+        if loi and bot_reply.strip():
+            bot_reply = cat_den_cau_cuoi(bot_reply)
+        if not bot_reply.strip():
             bot_reply = LOI_DU_PHONG
-            st.write(bot_reply)
+        cho.write(bot_reply)
+        if co:
+            nguy_co = True
 
         if nguy_co:
             st.warning(KENH_HO_TRO)
