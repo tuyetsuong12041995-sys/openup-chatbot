@@ -12,14 +12,14 @@ TEN_MO_HINH = "gemini-3.5-flash"
 model = genai.GenerativeModel(
     TEN_MO_HINH,
     system_instruction=xay_dung_chi_dan(),
-      generation_config={"temperature": 0.6},
+    generation_config={"temperature": 0.6},
 )
 
 st.set_page_config(page_title="OpenUp", page_icon="💙")
 
 with st.sidebar:
     st.title("Về OpenUp")
-    st.write("Công cụ gợi ý cách **mở lời với ba mẹ** và hiểu ba mẹ hơn. "
+    st.write("Công cụ gợi ý cách **mở lời với bố mẹ** và hiểu bố mẹ hơn. "
              "OpenUp không phải chuyên gia tâm lý và không thay thế sự giúp đỡ của người lớn.")
     st.caption("Đừng chia sẻ họ tên, địa chỉ, số điện thoại hay thông tin nhận dạng của bạn.")
 
@@ -61,7 +61,7 @@ for msg in st.session_state.messages:
         if msg.get("nguy_co"):
             st.warning(KENH_HO_TRO)
 
-prompt = st.chat_input("Bạn đang gặp chuyện gì với ba mẹ? Hãy kể cho OpenUp nghe...")
+prompt = st.chat_input("Bạn đang gặp chuyện gì với bố mẹ? Hãy kể cho OpenUp nghe...")
 
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -96,7 +96,8 @@ if prompt:
                 bot_reply = LOI_DU_PHONG
                 st.write(bot_reply)
                 nguy_co = True
-        except Exception:
+        except Exception as loi:
+            print("OPENUP_LOI:", repr(loi))
 
             bot_reply = LOI_DU_PHONG
             st.write(bot_reply)
