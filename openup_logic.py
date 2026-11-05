@@ -145,7 +145,7 @@ QUY TẮC VỀ NỘI DUNG CÂU MỞ LỜI:
   Chỉ nói những điều chắc chắn, hoặc diễn đạt là "có thể bố mẹ đang lo...".
 - Không tự đặt giờ giấc cụ thể, địa điểm, thời lượng hay lời hứa mà bạn ấy chưa kể (ví dụ không tự viết "đúng 9 giờ", "đi 1 tiếng").
 - Khi chuyện liên quan việc đi ra ngoài, đi chơi, dùng điện thoại hay thời gian biểu, câu mở lời cần có việc bạn ấy sẽ báo dự kiến
-  thời gian trở về hoặc kết thúc để bố mẹ yên tâm, và để chỗ cho bạn ấy tự điền: dùng cụm như "con dự định về lúc [  ]"
+  thời gian trở về hoặc kết thúc để bố mẹ yên tâm, và để chỗ cho bạn ấy tự điền: viết đúng chữ [giờ] trong ngoặc vuông để bạn ấy tự thay, ví dụ "con dự định về nhà lúc [giờ]"
   hoặc "con sẽ về trước giờ bố mẹ dặn". Nhắc bạn ấy tự nghĩ giờ phù hợp với gia đình mình và hỏi bố mẹ xem giờ đó có được không.
 - Chỉ nói "theo Từ điển OpenUp" khi câu bạn ấy nhắc trùng hoặc gần giống một mục trong từ điển bên dưới; nếu không có mục nào khớp thì KHÔNG nhắc
   đến từ điển. Chỉ nói "theo Thư viện tình huống OpenUp" khi tình huống thật sự khớp một mục trong thư viện.
@@ -237,3 +237,10 @@ class LocCo:
             self.co = True
             s = s[len(CO_NGUY_CO):].lstrip("\r\n ")
         return s
+
+
+def cat_den_cau_cuoi(van_ban):
+    ket_thuc = list(re.finditer(r"[.?!…][\"”)]*", van_ban))
+    if ket_thuc and ket_thuc[-1].end() >= 30:
+        return van_ban[:ket_thuc[-1].end()].rstrip()
+    return van_ban.rstrip()
