@@ -10,6 +10,11 @@ KENH_HO_TRO = (
     "OpenUp chỉ là công cụ gợi ý cách mở lời, không thay thế chuyên gia tâm lý."
 )
 
+LOI_QUA_TAI = (
+    "OpenUp đang có quá nhiều bạn trò chuyện cùng lúc nên chưa trả lời được. "
+    "Bạn đợi khoảng một phút rồi gửi lại nhé. Nếu bạn cần được giúp ngay, hãy nói với một người lớn bạn tin tưởng."
+)
+
 LOI_DU_PHONG = (
     "Xin lỗi, OpenUp đang gặp trục trặc nên chưa trả lời được. Bạn thử gửi lại sau một lát nhé. "
     "Nếu bạn cần được giúp ngay, hãy nói với một người lớn bạn tin tưởng."
@@ -197,7 +202,7 @@ def phat_hien_nguy_co(van_ban):
     t = bo_dau(van_ban)
     return any(p.search(t) for p in _DANG_NGUY_CO)
 
-def xay_dung_lich_su(messages, toi_da=12):
+def xay_dung_lich_su(messages, toi_da=8):
     cu = messages[:-1][-toi_da:]
     ls = []
     for m in cu:
