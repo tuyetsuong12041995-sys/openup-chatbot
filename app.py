@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 from openup_logic import (
-    KENH_HO_TRO, LOI_DU_PHONG, LOI_QUA_TAI, THU_VIEN, TU_DIEN,
+    KENH_HO_TRO, LOI_DU_PHONG, LOI_QUA_TAI, NGOAI_CHU_DE, LOI_QUA_DAI, GIOI_HAN_KY_TU, THU_VIEN, TU_DIEN,
     xay_dung_chi_dan, xay_dung_lich_su, phat_hien_nguy_co, LocCo, cat_den_cau_cuoi,
 )
 
@@ -80,6 +80,10 @@ for msg in st.session_state.messages:
 
 prompt = st.chat_input("Bạn đang gặp chuyện gì với bố mẹ? Hãy kể cho OpenUp nghe...")
 
+if prompt and len(prompt) > GIOI_HAN_KY_TU:
+    st.warning(LOI_QUA_DAI)
+    prompt = None
+
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
@@ -110,7 +114,7 @@ if prompt:
                     r = client.chat.completions.create(model=TEN_MO_HINH, messages=tn, temperature=0.6)
                     van_ban += loc.day(r.choices[0].message.content or "")
                 van_ban += loc.ket()
-                return van_ban, loi, loc.co, chi_tiet, het_han_muc
+                return van_ban, loi, loc.co, chi_tiet, het_han_muc, loc.ngoai
             chat = model.start_chat(history=lich_su)
             if stream:
                 for chunk in chat.send_message(prompt, stream=True):
@@ -139,16 +143,18 @@ if prompt:
             loi = True
         if not van_ban.strip():
             print("OPENUP_RONG:", chi_tiet)
-        return van_ban, loi, loc.co, chi_tiet, het_han_muc
+        return van_ban, loi, loc.co, chi_tiet, het_han_muc, loc.ngoai
 
     with st.chat_message("assistant"):
         cho = st.empty()
-        bot_reply, loi, co, chi_tiet, qua_tai = hoi_dap(True, cho)
-        if not qua_tai and (loi or not bot_reply.strip()) and len(bot_reply.strip()) < 30:
-            bot_reply, loi, co2, ct2, qua_tai = hoi_dap(False)
+        bot_reply, loi, co, chi_tiet, qua_tai, ngoai = hoi_dap(True, cho)
+        if not qua_tai and not ngoai and (loi or not bot_reply.strip()) and len(bot_reply.strip()) < 30:
+            bot_reply, loi, co2, ct2, qua_tai, ngoai = hoi_dap(False)
             co = co or co2
             chi_tiet = chi_tiet + ct2
-        if loi and bot_reply.strip():
+        if ngoai:
+            bot_reply = NGOAI_CHU_DE
+        elif loi and bot_reply.strip():
             bot_reply = cat_den_cau_cuoi(bot_reply)
         if not bot_reply.strip():
             bot_reply = LOI_QUA_TAI if qua_tai else LOI_DU_PHONG
