@@ -6,14 +6,31 @@ from openup_logic import (
     xay_dung_chi_dan, xay_dung_lich_su, phat_hien_nguy_co, LocCo, cat_den_cau_cuoi,
 )
 
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-TEN_MO_HINH = "gemini-3.5-flash"
+DUNG_OPENAI = "OPENAI_API_KEY" in st.secrets
 
-model = genai.GenerativeModel(
-    TEN_MO_HINH,
-    system_instruction=xay_dung_chi_dan(),
-    generation_config={"temperature": 0.6},
-)
+if DUNG_OPENAI:
+    from openai import OpenAI
+    client = OpenAI(
+        api_key=st.secrets["OPENAI_API_KEY"],
+        base_url=st.secrets.get("OPENAI_BASE_URL", "https://api.openai.com/v1"),
+    )
+    TEN_MO_HINH = st.secrets.get("OPENAI_MODEL", "gpt-4o-mini")
+else:
+    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+    TEN_MO_HINH = "gemini-3.5-flash"
+    model = genai.GenerativeModel(
+        TEN_MO_HINH,
+        system_instruction=xay_dung_chi_dan(),
+        generation_config={"temperature": 0.6},
+    )
+
+
+def tin_nhan_openai(lich_su, prompt):
+    ds = [{"role": "system", "content": xay_dung_chi_dan()}]
+    for m in lich_su:
+        ds.append({"role": "user" if m["role"] == "user" else "assistant", "content": m["parts"][0]})
+    ds.append({"role": "user", "content": prompt})
+    return ds
 
 st.set_page_config(page_title="OpenUp", page_icon="💙")
 
@@ -77,6 +94,23 @@ if prompt:
         chi_tiet = []
         het_han_muc = False
         try:
+            if DUNG_OPENAI:
+                tn = tin_nhan_openai(lich_su, prompt)
+                if stream:
+                    for chunk in client.chat.completions.create(
+                        model=TEN_MO_HINH, messages=tn, temperature=0.6, stream=True
+                    ):
+                        vb = chunk.choices[0].delta.content or "" if chunk.choices else ""
+                        out = loc.day(vb)
+                        if out:
+                            van_ban += out
+                            if cho is not None:
+                                cho.write(van_ban + " ▌")
+                else:
+                    r = client.chat.completions.create(model=TEN_MO_HINH, messages=tn, temperature=0.6)
+                    van_ban += loc.day(r.choices[0].message.content or "")
+                van_ban += loc.ket()
+                return van_ban, loi, loc.co, chi_tiet, het_han_muc
             chat = model.start_chat(history=lich_su)
             if stream:
                 for chunk in chat.send_message(prompt, stream=True):
@@ -100,7 +134,7 @@ if prompt:
         except Exception as e:
             print("OPENUP_LOI:", repr(e))
             chi_tiet.append("Exception: " + repr(e)[:300])
-            het_han_muc = "ResourceExhausted" in repr(e) or "429" in repr(e)
+            het_han_muc = any(k in repr(e) for k in ("ResourceExhausted", "RateLimit", "429"))
             van_ban += loc.ket()
             loi = True
         if not van_ban.strip():
