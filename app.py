@@ -74,14 +74,20 @@ if prompt:
         loc = LocCo()
         van_ban = ""
         loi = False
+        chi_tiet = []
         try:
             chat = model.start_chat(history=lich_su)
             if stream:
                 for chunk in chat.send_message(prompt, stream=True):
                     try:
                         vb = chunk.text
-                    except ValueError:
+                    except ValueError as e:
                         vb = ""
+                        chi_tiet.append("ValueError: " + str(e)[:200])
+                        try:
+                            chi_tiet.append("feedback: " + str(chunk.prompt_feedback)[:200])
+                        except Exception:
+                            pass
                     out = loc.day(vb)
                     if out:
                         van_ban += out
@@ -92,21 +98,30 @@ if prompt:
             van_ban += loc.ket()
         except Exception as e:
             print("OPENUP_LOI:", repr(e))
+            chi_tiet.append("Exception: " + repr(e)[:300])
             van_ban += loc.ket()
             loi = True
-        return van_ban, loi, loc.co
+        if not van_ban.strip():
+            print("OPENUP_RONG:", chi_tiet)
+        return van_ban, loi, loc.co, chi_tiet
 
     with st.chat_message("assistant"):
         cho = st.empty()
-        bot_reply, loi, co = hoi_dap(True, cho)
-        if loi and len(bot_reply.strip()) < 30:
-            bot_reply, loi, co2 = hoi_dap(False)
+        bot_reply, loi, co, chi_tiet = hoi_dap(True, cho)
+        if (loi or not bot_reply.strip()) and len(bot_reply.strip()) < 30:
+            bot_reply, loi, co2, ct2 = hoi_dap(False)
             co = co or co2
+            chi_tiet = chi_tiet + ct2
         if loi and bot_reply.strip():
             bot_reply = cat_den_cau_cuoi(bot_reply)
         if not bot_reply.strip():
             bot_reply = LOI_DU_PHONG
         cho.write(bot_reply)
+        try:
+            if st.secrets.get("DEBUG") and chi_tiet:
+                st.caption("Chi tiết lỗi (chỉ hiện khi bật DEBUG): " + " | ".join(chi_tiet))
+        except Exception:
+            pass
         if co:
             nguy_co = True
 
