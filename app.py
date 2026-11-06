@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 from openup_logic import (
-    KENH_HO_TRO, LOI_DU_PHONG, THU_VIEN, TU_DIEN,
+    KENH_HO_TRO, LOI_DU_PHONG, LOI_QUA_TAI, THU_VIEN, TU_DIEN,
     xay_dung_chi_dan, xay_dung_lich_su, phat_hien_nguy_co, LocCo, cat_den_cau_cuoi,
 )
 
@@ -75,6 +75,7 @@ if prompt:
         van_ban = ""
         loi = False
         chi_tiet = []
+        het_han_muc = False
         try:
             chat = model.start_chat(history=lich_su)
             if stream:
@@ -99,23 +100,24 @@ if prompt:
         except Exception as e:
             print("OPENUP_LOI:", repr(e))
             chi_tiet.append("Exception: " + repr(e)[:300])
+            het_han_muc = "ResourceExhausted" in repr(e) or "429" in repr(e)
             van_ban += loc.ket()
             loi = True
         if not van_ban.strip():
             print("OPENUP_RONG:", chi_tiet)
-        return van_ban, loi, loc.co, chi_tiet
+        return van_ban, loi, loc.co, chi_tiet, het_han_muc
 
     with st.chat_message("assistant"):
         cho = st.empty()
-        bot_reply, loi, co, chi_tiet = hoi_dap(True, cho)
-        if (loi or not bot_reply.strip()) and len(bot_reply.strip()) < 30:
-            bot_reply, loi, co2, ct2 = hoi_dap(False)
+        bot_reply, loi, co, chi_tiet, qua_tai = hoi_dap(True, cho)
+        if not qua_tai and (loi or not bot_reply.strip()) and len(bot_reply.strip()) < 30:
+            bot_reply, loi, co2, ct2, qua_tai = hoi_dap(False)
             co = co or co2
             chi_tiet = chi_tiet + ct2
         if loi and bot_reply.strip():
             bot_reply = cat_den_cau_cuoi(bot_reply)
         if not bot_reply.strip():
-            bot_reply = LOI_DU_PHONG
+            bot_reply = LOI_QUA_TAI if qua_tai else LOI_DU_PHONG
         cho.write(bot_reply)
         try:
             if st.secrets.get("DEBUG") and chi_tiet:
