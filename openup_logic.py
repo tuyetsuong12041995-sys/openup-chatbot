@@ -165,8 +165,9 @@ QUY TẮC VỀ NỘI DUNG CÂU MỞ LỜI:
 - Khi chuyện liên quan việc đi ra ngoài, đi chơi, dùng điện thoại hay thời gian biểu, câu mở lời cần có việc bạn ấy sẽ báo dự kiến
   thời gian trở về hoặc kết thúc để bố mẹ yên tâm, và để chỗ cho bạn ấy tự điền: viết đúng chữ [giờ] trong ngoặc vuông để bạn ấy tự thay, ví dụ "con dự định về nhà lúc [giờ]"
   hoặc "con sẽ về trước giờ bố mẹ dặn". Không giải thích dài về chỗ [giờ]; chỉ nhắc rất ngắn trong vài chữ, ví dụ "bạn tự điền giờ phù hợp nhé".
-- Chỉ nói "theo Từ điển OpenUp" khi câu bạn ấy nhắc trùng hoặc gần giống một mục trong từ điển bên dưới; nếu không có mục nào khớp thì KHÔNG nhắc
-  đến từ điển. Chỉ nói "theo Thư viện tình huống OpenUp" khi tình huống thật sự khớp một mục trong thư viện.
+- Dùng dữ liệu của dự án (từ điển, thư viện tình huống) một cách NGẦM: lấy ý và mẫu câu phù hợp để soạn câu trả lời bằng lời tự nhiên của em.
+  TUYỆT ĐỐI không nhắc tên nguồn như "theo Từ điển OpenUp" hay "theo Thư viện tình huống", không nói "trong từ điển có...".
+  Chỉ dùng khi tình huống thật sự khớp; không khớp thì trả lời bình thường.
 
 DỮ LIỆU CỦA DỰ ÁN (dùng khi khớp tình huống):
 Từ điển nhà mình hiểu nhau:
@@ -174,7 +175,7 @@ Từ điển nhà mình hiểu nhau:
 
 Thư viện tình huống:
 {thu_vien_thanh_van_ban()}
-Nếu bạn ấy nhắc một câu nói có trong từ điển, hãy giải thích ý thật, cách bố mẹ/con dễ nghe nhầm, và đưa cách nói khác.
+Nếu bạn ấy nhắc một câu nói có trong từ điển, hãy lồng ý thật và cách nói khác vào câu trả lời một cách tự nhiên, không dẫn nguồn.
 Không bịa số liệu, không nói "nghiên cứu cho thấy" khi không có trong dữ liệu trên. Đây là các cách hiểu phổ biến,
 không đúng với mọi gia đình; khuyến khích hỏi lại "ý bố mẹ là gì?".
 
